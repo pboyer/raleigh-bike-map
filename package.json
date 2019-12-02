@@ -1,0 +1,33 @@
+{
+  "name": "raleigh-bike-map",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "mapnik": "^4.3.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "deploy": "now dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/pboyer/raleigh-bike-map.git"
+  },
+  "keywords": [
+    "bikes",
+    "raleigh",
+    "mapnik",
+    "openstreetmap",
+    "osm"
+  ],
+  "author": "Peter Boyer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pboyer/raleigh-bike-map/issues"
+  },
+  "homepage": "https://github.com/pboyer/raleigh-bike-map#readme"
+}

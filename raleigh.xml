@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map[]>
+<Map
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+  font-directory="./fonts/Public_Sans/static/PublicSans-Regular.ttf"
+  background-color="#dfd8c9">
+
+  <!-- <Style name="natural">
+    <Rule>
+      <Filter>([natural].match('[a-z]+'))</Filter>
+      <PolygonSymbolizer comp-op="multiply" fill="#ada" />
+    </Rule>
+  </Style> -->
+
+  <Style name="highways">
+    <Rule>
+      <Filter>([highway] = 'motorway')</Filter>
+      <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#fff" stroke-width="24" clip="false" />
+    </Rule>
+  
+    <Rule>
+      <Filter>([highway] = 'trunk')</Filter>
+      <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#fff" stroke-width="20" clip="false" />
+    </Rule>
+
+    <Rule>
+      <Filter>([highway] = 'tertiary') or ([highway] = 'secondary') or ([highway] = 'primary') or ([highway] = 'trunk_link')</Filter>
+      <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#fff" stroke-width="16" clip="false" />
+    </Rule>
+
+    <Rule>
+      <Filter>[highway] = 'residential' or [highway] = 'service'</Filter>
+      <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#fff" stroke-opacity="0.8" stroke-width="7" clip="false" />
+    </Rule>
+  </Style>
+
+  <Style name="cycleways">
+    <Rule>
+      <Filter>[highway] = 'cycleway'</Filter>
+      <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#1E4A10" stroke-opacity="1" stroke-width="10" clip="false" />
+    </Rule>
+
+  <!-- See https://wiki.openstreetmap.org/wiki/Key:cycleway -->
+
+    <Rule>
+      <Filter>([cycleway:left:buffer] = 'lane') or ([cycleway:right:buffer] = 'lane') or ([cycleway:left] = 'lane') or ([cycleway:right] = 'lane') or ([cycleway] = 'lane') or ([cycleway] = 'opposite_lane')</Filter>
+      <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#3B8524" stroke-opacity="1" stroke-width="8" clip="false" />
+    </Rule>
+
+    <Rule>
+      <Filter>([cycleway] = 'shared_lane') or ([cycleway] = 'share_busway') or ([cycleway] = 'opposite_share_busway') or ([cycleway] = 'shared')</Filter>
+      <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#3B8524" stroke-opacity="1" stroke-width="8" stroke-dasharray="0.1,16" clip="false" />
+    </Rule>
+
+    <Rule>
+      <Filter>([cycleway] = 'track') or ([cycleway] = 'opposite_track')</Filter>
+      <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#1E4A10" stroke-opacity="1" stroke-width="8" clip="false" />
+    </Rule>
+
+    <Rule>
+      <Filter>[bicycle] = 'designated'</Filter>
+      <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#000" stroke-opacity="0.5" stroke-width="8" stroke-dasharray="0.1,16" clip="false" />
+    </Rule>
+  </Style>
+
+  <Style name="footways">
+    <Rule>
+      <Filter>([footway].match('[a-z_]+'))</Filter>
+      <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#949087" stroke-width="2" stroke-dasharray="4,6" clip="false" />
+    </Rule>
+
+    <Rule>
+      <Filter>[highway] = 'footway'</Filter>
+      <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#949087" stroke-width="2" stroke-dasharray="4,6" clip="false" />
+    </Rule>
+  </Style>
+
+  <Style name="buildings">
+    <Rule>
+      <Filter>([building].match('[a-z]+'))</Filter>
+      <PolygonSymbolizer fill="rgba(255,255,255,0.1)" />
+    </Rule>
+  </Style>
+
+  <Style name="labels">
+    <Rule>
+      <Filter>[building] = 'yes' and [shop] = 'bicycle'</Filter>
+      <TextSymbolizer
+        size="32"
+        fill="#000"
+        dx="32"
+        face-name="Public Sans Regular"
+        halo-radius="2"
+        placement="interior"
+        horizontal-alignment="right"
+        >[name]</TextSymbolizer>
+    </Rule>
+
+    <Rule>
+      <Filter>([highway].match('[a-z]+'))</Filter>
+      <TextSymbolizer
+        size="24"
+        placement="line"
+        face-name="Public Sans Regular"
+        halo-radius="2"
+        allow-overlap="false"
+        clip="false"
+        >[name]</TextSymbolizer>
+    </Rule>
+
+  </Style>
+
+  <Style name="shop-markers">
+    <Rule>
+      <Filter>[building] = 'yes' and [shop] = 'bicycle'</Filter>
+      <PointSymbolizer file="map-marker.svg" opacity="1.0" transform="scale(0.1,0.1)" />
+    </Rule>  
+  </Style>
+
+  <Layer name="layer" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>highways</StyleName>
+    <Datasource>
+       <Parameter name="file">raleigh.geojson</Parameter>
+       <Parameter name="type">geojson</Parameter>
+    </Datasource>
+  </Layer>
+
+  <Layer name="layer" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>buildings</StyleName>
+    <Datasource>
+       <Parameter name="file">raleigh.geojson</Parameter>
+       <Parameter name="type">geojson</Parameter>
+    </Datasource>
+  </Layer>
+
+  <Layer name="layer" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>footways</StyleName>
+    <Datasource>
+       <Parameter name="file">raleigh.geojson</Parameter>
+       <Parameter name="type">geojson</Parameter>
+    </Datasource>
+  </Layer>
+
+  <Layer name="layer" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>cycleways</StyleName>
+    <Datasource>
+       <Parameter name="file">raleigh.geojson</Parameter>
+       <Parameter name="type">geojson</Parameter>
+    </Datasource>
+  </Layer>
+
+  <Layer name="layer" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>shop-markers</StyleName>
+    <Datasource>
+       <Parameter name="file">raleigh.geojson</Parameter>
+       <Parameter name="type">geojson</Parameter>
+    </Datasource>
+  </Layer>
+
+  <Layer name="layer" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>labels</StyleName>
+    <Datasource>
+       <Parameter name="file">raleigh.geojson</Parameter>
+       <Parameter name="type">geojson</Parameter>
+    </Datasource>
+  </Layer>
+
+  <Layer name="layer" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>buildings</StyleName>
+    <Datasource>
+       <Parameter name="file">raleigh.geojson</Parameter>
+       <Parameter name="type">geojson</Parameter>
+    </Datasource>
+  </Layer>
+
+  <!-- <Layer name="layer" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>natural</StyleName>
+    <Datasource>
+       <Parameter name="file">raleigh.geojson</Parameter>
+       <Parameter name="type">geojson</Parameter>
+    </Datasource>
+  </Layer> -->
+</Map>
