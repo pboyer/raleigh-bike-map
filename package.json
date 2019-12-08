@@ -7,12 +7,10 @@
     "test": "test"
   },
   "dependencies": {
-    "mapnik": "^4.3.1"
+    "mapnik": "^4.3.1",
+    "node-fetch": "^2.6.0"
   },
   "devDependencies": {},
-  "scripts": {
-    "deploy": "now dist"
-  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/pboyer/raleigh-bike-map.git"

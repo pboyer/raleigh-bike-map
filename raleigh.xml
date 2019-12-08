@@ -59,7 +59,7 @@
 
     <Rule>
       <Filter>[bicycle] = 'designated'</Filter>
-      <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#000" stroke-opacity="0.5" stroke-width="8" stroke-dasharray="0.1,16" clip="false" />
+      <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#000" stroke-opacity="0.3" stroke-width="8" stroke-dasharray="0.1,16" clip="false" />
     </Rule>
   </Style>
 
